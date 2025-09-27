@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://clqksjjufyxpc"]
+
+[ext_resource type="PackedScene" uid="uid://cybqw86l57nsj" path="res://Scenes/Player.tscn" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://dcxf2yfl17qx2" path="res://main.gd" id="1_uu6xs"]
+
+[node name="Main Control" type="Node2D"]
+script = ExtResource("1_uu6xs")
+
+[node name="Player" parent="." instance=ExtResource("1_glv2v")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 324)
+
+[node name="ObstacleSpawner" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]

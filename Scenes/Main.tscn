@@ -7,16 +7,26 @@
 [node name="Main Control" type="Node2D"]
 script = ExtResource("1_uu6xs")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 1135.0
+offset_bottom = 628.0
+color = Color(0.08235294, 0.08235294, 0.08235294, 0.19607843)
+
 [node name="Player" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(577, 324)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 324)
 
+[node name="Sun Area" parent="." instance=ExtResource("3_kln2b")]
+visible = false
+
 [node name="ObstacleSpawner" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
-
-[node name="Sun Area" parent="ObstacleSpawner" instance=ExtResource("3_kln2b")]
 
 [connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]

@@ -1,8 +1,6 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-signal player_obstacle_collision
+var speed = -200
 
-func _physics_process(delta: float) -> void:
-	move_and_slide()
-	if global_position.x <= 0:
-		queue_free()
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	linear_velocity = Vector2(speed,0)

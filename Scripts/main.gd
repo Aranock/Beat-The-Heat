@@ -22,6 +22,6 @@ func _on_player_emit_player_movement() -> void:
 func _on_obstacle_spawner_timeout() -> void:
 	var new_obstacle = obstacleTemplate.instantiate()
 	var view = get_viewport_rect().size
-	new_obstacle.global_position = Vector2(view.x, randi_range(0, view.y))
+	new_obstacle.global_position = Vector2(view.x + 200, randi_range(0, view.y))
 	add_child(new_obstacle)
 	obstacles.append(new_obstacle)

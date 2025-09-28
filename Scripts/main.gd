@@ -3,7 +3,11 @@ extends Node2D
 @onready var player = $Player
 @onready var camera = $Camera2D
 @onready var sun_area = $"Sun Area"
-@onready var game_over_menu = $CanvasLayer/GameOverMenu
+@onready var game_over_menu = $GameOverCanvas/GameOverMenu
+@onready var heat_label = $HeatLabel
+var heat_level = 50.0
+signal heat_updated
+signal overheated
 
 
 @onready var obstacleTemplate = preload("res://Scenes/Obstacles.tscn")
@@ -13,6 +17,8 @@ var obstacles: Array = []
 func _ready() -> void:
 	self.player.position = Vector2(576, 324)
 	self.player.player_movement.connect(_on_player_emit_player_movement)
+	self.heat_updated.connect(self.player._on_main_heat_updated)
+	self.overheated.connect(self.player._on_main_overheated)
 	self.sun_area.game_over.connect(_on_sun_area_game_over)
 
 func _on_player_emit_player_movement() -> void:
@@ -31,3 +37,12 @@ func _on_obstacle_spawner_timeout() -> void:
 	new_obstacle.global_position = Vector2(view.x + 200, randi_range(0, view.y))
 	add_child(new_obstacle)
 	obstacles.append(new_obstacle)
+	self.heat_updated.connect(new_obstacle._on_main_heat_updated)
+
+func _on_heat_timer_timeout() -> void:
+	heat_level += 0.278
+	heat_label.text = "Heat Level: " + str(heat_level)
+	if heat_level > 100:
+		emit_signal("overheated")
+		heat_level = 50.0
+	emit_signal("heat_updated", heat_level)

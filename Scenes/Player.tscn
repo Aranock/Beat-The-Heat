@@ -28,3 +28,9 @@ sprite_frames = SubResource("SpriteFrames_sh265")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

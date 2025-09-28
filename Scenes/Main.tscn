@@ -9,13 +9,13 @@
 [node name="Main Control" type="Node2D"]
 script = ExtResource("1_uu6xs")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="GameOverCanvas" type="CanvasLayer" parent="."]
 
-[node name="GameOverMenu" parent="CanvasLayer2" instance=ExtResource("4_rgh2o")]
+[node name="GameOverMenu" parent="GameOverCanvas" instance=ExtResource("4_rgh2o")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PauseCanvas" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_pbw6q")]
+[node name="PauseMenu" parent="PauseCanvas" instance=ExtResource("5_pbw6q")]
 
 [node name="Player" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(577, 324)
@@ -30,4 +30,20 @@ visible = false
 wait_time = 0.5
 autostart = true
 
+[node name="HeatTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="HeatLabel" type="RichTextLabel" parent="."]
+offset_left = 382.0
+offset_top = 2.0
+offset_right = 751.0
+offset_bottom = 61.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Heat Level: 50.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]
+[connection signal="timeout" from="HeatTimer" to="." method="_on_heat_timer_timeout"]

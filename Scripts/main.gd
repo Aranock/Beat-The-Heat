@@ -7,7 +7,7 @@ extends Node2D
 @onready var distance_label = $DistanceLabel
 @onready var heat_bar = $HeatBar
 @onready var pause_menu = $PauseCanvas/PauseMenu
-var heat_level = 50.0
+var heat_level = 35.0
 var player_in_shadow : bool = false
 var total_entered_shadows : int = 0
 signal heat_updated

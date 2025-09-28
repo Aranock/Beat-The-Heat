@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b22k7bc5rbjbb"
+path="res://.godot/imported/Wild West Coast Racing.mp3-a039b668b650296a30e66ac1bae40db3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Wild West Coast Racing.mp3"
+dest_files=["res://.godot/imported/Wild West Coast Racing.mp3-a039b668b650296a30e66ac1bae40db3.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

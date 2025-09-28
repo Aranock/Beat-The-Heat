@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var stun_timer = $StunTimer
+@onready var fire_animation = $FireAnimation
 
 var player_speed : float = 300.0
 signal player_movement
@@ -36,14 +37,16 @@ func _physics_process(_delta):
 func _on_main_heat_updated(ht_lvl):
 	if ht_lvl > 75:
 		player_speed_position =4
-	elif ht_lvl > 50:
-		player_speed_position =3
-	elif ht_lvl > 25:
-		player_speed_position =2
-	elif ht_lvl > 0:
-		player_speed_position = 1
+	else:
+		if ht_lvl > 50:
+			player_speed_position =3
+		elif ht_lvl > 25:
+			player_speed_position =2
+		elif ht_lvl > 0:
+			player_speed_position = 1
 
 func _on_main_overheated():
+	fire_animation.visible = false
 	stunned = true
 	stun_timer.start()
 

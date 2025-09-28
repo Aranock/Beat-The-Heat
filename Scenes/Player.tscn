@@ -1,16 +1,126 @@
-[gd_scene load_steps=5 format=3 uid="uid://cybqw86l57nsj"]
+[gd_scene load_steps=29 format=3 uid="uid://cybqw86l57nsj"]
 
-[ext_resource type="Texture2D" uid="uid://i4b4yl0bh02r" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cugbnbk47i200" path="res://Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://xd4uutn1nros" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0000.png" id="2_1iu4k"]
+[ext_resource type="Texture2D" uid="uid://kn7p61oj2ml7" path="res://Assets/bth jam/lizard frames/run/lizard_01.png" id="2_52ee3"]
+[ext_resource type="Texture2D" uid="uid://1aogtfyde064" path="res://Assets/bth jam/lizard frames/dead/Dead_01.png" id="2_miouo"]
+[ext_resource type="Texture2D" uid="uid://bcf28055bw22y" path="res://Assets/bth jam/lizard frames/run/lizard_02.png" id="3_bhhdu"]
+[ext_resource type="Texture2D" uid="uid://srujj7q3cqwv" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0004.png" id="3_m0x7a"]
+[ext_resource type="Texture2D" uid="uid://c36a24w4su4uy" path="res://Assets/bth jam/lizard frames/dead/Dead_02.png" id="3_o3h8g"]
+[ext_resource type="Texture2D" uid="uid://d2i1hr3invkwu" path="res://Assets/bth jam/lizard frames/dead/Dead_03.png" id="4_1e7my"]
+[ext_resource type="Texture2D" uid="uid://d03naa0x2jaa0" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0008.png" id="4_5v66d"]
+[ext_resource type="Texture2D" uid="uid://dj3rtvk1xcnk8" path="res://Assets/bth jam/lizard frames/run/lizard_03.png" id="4_megsn"]
+[ext_resource type="Texture2D" uid="uid://c23be7lokgd0d" path="res://Assets/bth jam/lizard frames/dead/Dead_04.png" id="5_arntx"]
+[ext_resource type="Texture2D" uid="uid://d27y2usxndwhw" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0012.png" id="5_x63xi"]
+[ext_resource type="Texture2D" uid="uid://1wl2xo3miuqn" path="res://Assets/bth jam/lizard frames/run/lizard_04.png" id="5_yoq75"]
+[ext_resource type="Texture2D" uid="uid://s4l6wuecol8t" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0015.png" id="6_i2e8t"]
+[ext_resource type="Texture2D" uid="uid://bwopad41j2ux1" path="res://Assets/bth jam/lizard frames/run/lizard_05.png" id="6_ksbbd"]
+[ext_resource type="Texture2D" uid="uid://diu22snrthmtf" path="res://Assets/bth jam/lizard frames/dead/Dead_05.png" id="6_lslt6"]
+[ext_resource type="Texture2D" uid="uid://nh5gie26xds1" path="res://Assets/bth jam/lizard frames/run/lizard_06.png" id="7_glx4g"]
+[ext_resource type="Texture2D" uid="uid://c04vas0m1l3nm" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0019.png" id="7_qidb7"]
+[ext_resource type="Texture2D" uid="uid://dkre2rxg6pf8p" path="res://Assets/bth jam/lizard frames/dead/Dead_06.png" id="7_ulo2v"]
+[ext_resource type="Texture2D" uid="uid://co0b8lmbix2jb" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_01.png" id="14_1iu4k"]
+[ext_resource type="Texture2D" uid="uid://coaplxfhymnch" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_02.png" id="15_m0x7a"]
+[ext_resource type="Texture2D" uid="uid://d3neoy5uo63ka" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_03.png" id="16_5v66d"]
+[ext_resource type="Texture2D" uid="uid://0q2pjvwnwi4q" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_04.png" id="17_x63xi"]
+[ext_resource type="Texture2D" uid="uid://dit8q8s15mlxp" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_05.png" id="18_i2e8t"]
+[ext_resource type="Texture2D" uid="uid://uxdfokb5u4ve" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_06.png" id="19_qidb7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_70hv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1iu4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m0x7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5v66d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x63xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i2e8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qidb7")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_4flbx")
+"texture": ExtResource("2_miouo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o3h8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1e7my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_arntx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lslt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ulo2v")
 }],
 "loop": false,
-"name": &"default",
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_1iu4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_m0x7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_5v66d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_x63xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_i2e8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qidb7")
+}],
+"loop": true,
+"name": &"onfire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_52ee3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bhhdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_megsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yoq75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ksbbd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_glx4g")
+}],
+"loop": true,
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -18,13 +128,28 @@ animations = [{
 size = Vector2(58, 34)
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.09, 1.09)
 collision_layer = 524288
 script = ExtResource("1_onrkg")
 
+[node name="FireAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, 0)
+scale = Vector2(0.091, 0.091)
+sprite_frames = SubResource("SpriteFrames_70hv0")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.03497857
+speed_scale = 2.0
+
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-9.536743e-07, 2.3841858e-07)
-scale = Vector2(0.45312497, 0.26171875)
+position = Vector2(-1, 9.536743e-07)
+scale = Vector2(0.091, 0.091)
 sprite_frames = SubResource("SpriteFrames_sh265")
+animation = &"onfire"
+autoplay = "run"
+frame_progress = 0.27842066
+speed_scale = 2.0
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")

@@ -107,8 +107,8 @@ func _on_heat_timer_timeout() -> void:
 	distance += 2*heat_level /100
 	distance_label.text = "Distance: " + str(int(distance)) + "ft"
 	if heat_level > 100:
-		emit_signal("overheated")
-		heat_level = 50.0
+		heat_level = 100.0
+		game_over()
 	elif heat_level<=0:
 		heat_level = 0
 		game_over()

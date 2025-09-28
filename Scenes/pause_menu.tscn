@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://crfglgciooyr6"]
+[gd_scene load_steps=13 format=3 uid="uid://crfglgciooyr6"]
 
 [ext_resource type="Script" uid="uid://duwxy28pxjmmn" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
 [ext_resource type="Shader" uid="uid://e12lig0d16ir" path="res://Scripts/menu.gdshader" id="2_1och7"]
+[ext_resource type="FontFile" uid="uid://bc61b6ehals1e" path="res://Assets/KRONIKA_.ttf" id="3_1och7"]
+[ext_resource type="StyleBox" uid="uid://di2jc14nf4ern" path="res://Assets/Styles/MenuPanel.tres" id="3_myy0f"]
+[ext_resource type="StyleBox" uid="uid://b10p4sv3p8kkj" path="res://Assets/Styles/button.tres" id="5_sjs17"]
+[ext_resource type="StyleBox" uid="uid://twttl4rba3gt" path="res://Assets/Styles/hoverbutton.tres" id="6_u8tnp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0w1u"]
 shader = ExtResource("2_1och7")
 shader_parameter/lod = 0.0
+
+[sub_resource type="Theme" id="Theme_bpi0q"]
+default_font = ExtResource("3_1och7")
 
 [sub_resource type="Animation" id="Animation_bpi0q"]
 length = 0.001
@@ -62,9 +69,25 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_vmyb1"]
+resource_name = "editing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vmyb1"]
 _data = {
 &"RESET": SubResource("Animation_bpi0q"),
+&"editing": SubResource("Animation_vmyb1"),
 &"menu_blur": SubResource("Animation_1och7")
 }
 
@@ -91,6 +114,7 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.62352943)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,10 +127,12 @@ offset_right = 237.0
 offset_bottom = 249.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_myy0f")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 process_mode = 3
 layout_mode = 2
+theme = SubResource("Theme_bpi0q")
 theme_override_constants/separation = 80
 alignment = 1
 
@@ -114,21 +140,30 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
-text = "Resume"
+theme_override_styles/normal = ExtResource("5_sjs17")
+theme_override_styles/hover = ExtResource("6_u8tnp")
+text = " Resume "
 
 [node name="Restart" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
-text = "Restart"
+theme_override_styles/normal = ExtResource("5_sjs17")
+theme_override_styles/hover = ExtResource("6_u8tnp")
+text = " Restart "
 
 [node name="Exit Game" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
-text = "Exit Game"
+theme_override_styles/normal = ExtResource("5_sjs17")
+theme_override_styles/hover = ExtResource("6_u8tnp")
+text = " Exit Game "
 
 [node name="PauseAnimation" type="AnimationPlayer" parent="."]
 libraries = {

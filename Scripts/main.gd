@@ -22,7 +22,6 @@ var distance = 0.0
 var obstacles: Array = []
 
 func spawn_background(spawn_position = Vector2(get_viewport_rect().size.x*2, 0)):
-	print("spawn")
 	var background = self.background_template.instantiate()
 	background.global_position = spawn_position
 	add_child(background)

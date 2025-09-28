@@ -16,9 +16,19 @@ var previous_obstacle_position = -1
 var distance = 0.0
 
 
-@onready var obstacleTemplate = preload("res://Scenes/Obstacles.tscn")
+@onready var obstacle_template = preload("res://Scenes/Obstacles.tscn")
+@onready var background_template = preload("res://Scenes/backdrop.tscn")
 
 var obstacles: Array = []
+
+func spawn_background(spawn_position = Vector2(get_viewport_rect().size.x*2, 0)):
+	print("spawn")
+	var background = self.background_template.instantiate()
+	background.global_position = spawn_position
+	add_child(background)
+	self.heat_updated.connect(background.get_node("BackdropSprite")._on_main_heat_updated)
+	background.get_node("BackdropSprite").make_new_background.connect(spawn_background)
+	
 
 func _ready() -> void:
 	randomize()
@@ -30,6 +40,10 @@ func _ready() -> void:
 	self.sun_area.game_over.connect(_on_sun_area_game_over)
 	self.pause_menu.visible = false
 	self.game_over_menu.visible = false
+	spawn_background(Vector2(0,0))
+	spawn_background(Vector2(get_viewport_rect().size.x,0))
+	spawn_background(Vector2(get_viewport_rect().size.x*2,0))
+	spawn_background(Vector2(get_viewport_rect().size.x*2.5,0))
 
 func _process(_delta: float) -> void:
 	pause_game()
@@ -68,7 +82,7 @@ func _on_obstacle_spawner_timeout() -> void:
 			random_position = get_random_position_excluding_range.call(previous_obstacle_position, view)
 			previous_obstacle_position = random_position.y
 		return random_position
-	var new_obstacle = obstacleTemplate.instantiate()
+	var new_obstacle = obstacle_template.instantiate()
 	new_obstacle.global_position = generate_start_position.call()
 	add_child(new_obstacle)
 	obstacles.append(new_obstacle)

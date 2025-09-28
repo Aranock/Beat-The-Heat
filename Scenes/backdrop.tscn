@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpv20dhll2gp1"]
+
+[ext_resource type="Texture2D" uid="uid://fbqqhj3ri0iq" path="res://Assets/bth jam/Backdrop.png" id="1_cpmda"]
+[ext_resource type="Script" uid="uid://oh54nl6o6w4w" path="res://Scripts/backdrop.gd" id="1_i4mx6"]
+[ext_resource type="Script" uid="uid://bp0v8dvor0pwa" path="res://Scripts/backdrop_sprite.gd" id="3_l06nh"]
+
+[node name="Backdrop" type="Node2D"]
+script = ExtResource("1_i4mx6")
+
+[node name="BackdropSprite" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(578.5, 321.5)
+scale = Vector2(0.61822915, 0.62685186)
+texture = ExtResource("1_cpmda")
+script = ExtResource("3_l06nh")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7aqfks4df4"]
+
+[ext_resource type="Script" uid="uid://cgy1nrcfheqp5" path="res://Scripts/sun_area.gd" id="1_xjkuo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kblcw"]
+size = Vector2(21, 663)
+
+[node name="Sun Area" type="Area2D"]
+collision_layer = 524289
+collision_mask = 524289
+script = ExtResource("1_xjkuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 321.5)
+shape = SubResource("RectangleShape2D_kblcw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

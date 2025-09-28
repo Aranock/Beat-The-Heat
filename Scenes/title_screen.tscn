@@ -1,4 +1,4 @@
-[gd_scene load_steps=306 format=3 uid="uid://044imb65g2rk"]
+[gd_scene load_steps=307 format=3 uid="uid://044imb65g2rk"]
 
 [ext_resource type="Texture2D" uid="uid://gm0bwdrj1vh4" path="res://Assets/bth jam/menu/Scene1_000.png" id="1_42kgw"]
 [ext_resource type="Script" uid="uid://dpcvgamqu1b1r" path="res://Scripts/title_screen.gd" id="1_d4lug"]
@@ -304,6 +304,7 @@
 [ext_resource type="Texture2D" uid="uid://les8o64qarif" path="res://Assets/bth jam/menu/Scene1_298.png" id="299_dvvc3"]
 [ext_resource type="Texture2D" uid="uid://b20ce5hp0hd7q" path="res://Assets/bth jam/menu/Scene1_299.png" id="300_piixe"]
 [ext_resource type="FontFile" uid="uid://bc61b6ehals1e" path="res://Assets/KRONIKA_.ttf" id="301_xdxsj"]
+[ext_resource type="Texture2D" uid="uid://b5082yu1l2dt" path="res://Assets/bth jam/controls.png" id="305_en20g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_phith"]
 animations = [{
@@ -1269,13 +1270,19 @@ theme_override_styles/hover = ExtResource("3_d4lug")
 text = "Exit"
 
 [node name="Backdrop" type="AnimatedSprite2D" parent="."]
-position = Vector2(564.00006, 326)
-scale = Vector2(0.91041666, 0.9104167)
+position = Vector2(567.16675, 326)
+scale = Vector2(0.91536456, 0.9104167)
 sprite_frames = SubResource("SpriteFrames_phith")
 animation = &"loop"
 autoplay = "loop"
 frame = 65
 frame_progress = 0.04001276
+
+[node name="ControlsImage" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.84313726)
+position = Vector2(215, 525)
+texture = ExtResource("305_en20g")
 
 [connection signal="button_down" from="Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="Controls" to="." method="_on_controls_button_down"]

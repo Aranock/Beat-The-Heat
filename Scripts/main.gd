@@ -77,17 +77,20 @@ func pause_game():
 			pause_menu.resume()
 
 func _on_heat_timer_timeout() -> void:
-	if player_in_shadow:
-		heat_level -= .139*2
-		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
-	else:
-		heat_level += 0.278*2
-		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
+	var adjust_heat = func():
+		if player_in_shadow:
+			heat_level -= .139*1.5
+			self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
+		else:
+			heat_level += 0.278*1.5
+			self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
+	adjust_heat.call()
+	distance += 2*heat_level /100
+	distance_label.text = "Distance: " + str(int(distance)) + "ft"
 	if heat_level > 100:
 		heat_level = 100.0
 		game_over()
 	elif heat_level<=0:
 		heat_level = 0
 		game_over()
-	heat_label.text = "Heat Level: " + str(heat_level)
 	emit_signal("heat_updated", heat_level)

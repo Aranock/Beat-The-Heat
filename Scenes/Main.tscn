@@ -9,11 +9,13 @@
 [node name="Main Control" type="Node2D"]
 script = ExtResource("1_uu6xs")
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="GameOverMenu" parent="CanvasLayer2" instance=ExtResource("4_rgh2o")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_pbw6q")]
-
-[node name="GameOverMenu" parent="CanvasLayer" instance=ExtResource("4_rgh2o")]
 
 [node name="Player" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(577, 324)

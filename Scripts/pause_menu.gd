@@ -10,6 +10,7 @@ func resume():
 func pause():
 	get_tree().paused = true
 	$AnimationPlayer.play("menu_blur")
+	print("shit")
 
 func _on_restart_button_down() -> void:
 	resume()

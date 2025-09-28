@@ -32,7 +32,6 @@ position = Vector2(577, 324)
 visible = false
 
 [node name="ObstacleSpawner" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [node name="HeatTimer" type="Timer" parent="."]

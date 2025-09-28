@@ -1,20 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://clqksjjufyxpc"]
+[gd_scene load_steps=5 format=3 uid="uid://clqksjjufyxpc"]
 
 [ext_resource type="PackedScene" uid="uid://cybqw86l57nsj" path="res://Scenes/Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dcxf2yfl17qx2" path="res://Scripts/main.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://dp7aqfks4df4" path="res://Scenes/Sun_Area.tscn" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://b21silibtmbth" path="res://Scenes/pause_menu.tscn" id="4_rgh2o"]
 
 [node name="Main Control" type="Node2D"]
 script = ExtResource("1_uu6xs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 20.0
-offset_top = 15.0
-offset_right = 1135.0
-offset_bottom = 628.0
-color = Color(0.08235294, 0.08235294, 0.08235294, 0.19607843)
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_rgh2o")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 577.0
+offset_top = 324.0
+offset_right = 577.0
+offset_bottom = 324.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Player" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(577, 324)

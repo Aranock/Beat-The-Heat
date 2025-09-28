@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://clqksjjufyxpc"]
+[gd_scene load_steps=12 format=3 uid="uid://clqksjjufyxpc"]
 
 [ext_resource type="PackedScene" uid="uid://cybqw86l57nsj" path="res://Scenes/Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dcxf2yfl17qx2" path="res://Scripts/main.gd" id="1_uu6xs"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://crfglgciooyr6" path="res://Scenes/pause_menu.tscn" id="5_pbw6q"]
 [ext_resource type="FontFile" uid="uid://bc61b6ehals1e" path="res://Assets/KRONIKA_.ttf" id="8_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://dt0gpytgpese8" path="res://Assets/bth jam/BG Overlay.png" id="9_vy5pj"]
+[ext_resource type="AudioStream" uid="uid://cqy0ufuicawjs" path="res://Assets/Sounds/Wild West Coast Racing.mp3" id="10_bmxlf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bmxlf"]
 blend_mode = 1
@@ -75,6 +76,10 @@ metadata/_edit_lock_ = true
 
 [node name="Died" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Died"]
+stream = ExtResource("10_bmxlf")
+autoplay = true
 
 [connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]
 [connection signal="timeout" from="HeatTimer" to="." method="_on_heat_timer_timeout"]

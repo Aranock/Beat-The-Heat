@@ -45,6 +45,8 @@ func _ready() -> void:
 	spawn_background(Vector2(get_viewport_rect().size.x,0))
 	spawn_background(Vector2(get_viewport_rect().size.x*2,0))
 	spawn_background(Vector2(get_viewport_rect().size.x*2.5,0))
+	spawn_background(Vector2(get_viewport_rect().size.x*3,0))
+	spawn_background(Vector2(get_viewport_rect().size.x*3.5,0))
 
 func _process(_delta: float) -> void:
 	pause_game()

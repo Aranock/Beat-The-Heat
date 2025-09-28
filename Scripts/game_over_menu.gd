@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func resume():
 	get_tree().paused = false
-	$GameOverAnimation.play_backwards("menu_blur")
+	self.visible =false
 	
 func pause():
 	get_tree().paused = true

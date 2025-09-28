@@ -38,16 +38,11 @@ autostart = true
 wait_time = 0.1
 autostart = true
 
-[node name="HeatLabel" type="RichTextLabel" parent="."]
-offset_left = 388.0
-offset_top = 588.0
-offset_right = 757.0
-offset_bottom = 647.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Heat Level: 50.0"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="DistanceLabel" type="RichTextLabel" parent="."]
+offset_left = 461.0
+offset_top = 598.0
+offset_right = 680.0
+offset_bottom = 645.0
 
 [connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]
 [connection signal="timeout" from="HeatTimer" to="." method="_on_heat_timer_timeout"]

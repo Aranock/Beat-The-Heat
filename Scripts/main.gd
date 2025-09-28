@@ -4,7 +4,7 @@ extends Node2D
 @onready var camera = $Camera2D
 @onready var sun_area = $"Sun Area"
 @onready var game_over_menu = $GameOverCanvas/GameOverMenu
-@onready var heat_label = $HeatLabel
+@onready var distance_label = $DistanceLabel
 @onready var heat_bar = $HeatBar
 @onready var pause_menu = $PauseCanvas/PauseMenu
 var heat_level = 50.0
@@ -13,6 +13,7 @@ var total_entered_shadows : int = 0
 signal heat_updated
 signal overheated
 var previous_obstacle_position = -1
+var distance = 0.0
 
 
 @onready var obstacleTemplate = preload("res://Scenes/Obstacles.tscn")
@@ -53,11 +54,9 @@ func _on_obstacle_spawner_timeout() -> void:
 			var up_or_down = randf_range(0,1)
 			if up_or_down < (previous_y-150) / (view_size.y-200) or previous_y+200 > view_size.y-100:
 				var new_pos = Vector2(view_size.x+30, randi_range(100, previous_y-200))
-				print(new_pos)
 				return new_pos
 			else:
 				var new_pos = Vector2(view_size.x+30, randi_range(previous_y+200, view_size.y-100))
-				print(new_pos)
 				return new_pos
 				
 		var view = get_viewport_rect().size
@@ -85,7 +84,6 @@ func player_exited_shadow():
 
 func player_entered_shadow():
 	total_entered_shadows+=1
-	print(total_entered_shadows)
 	player_in_shadow = true
 
 func pause_game():
@@ -98,13 +96,16 @@ func pause_game():
 			pause_menu.resume()
 
 func _on_heat_timer_timeout() -> void:
-	if player_in_shadow:
-		heat_level -= .139*2
-		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
-	else:
-		heat_level += 0.278*2
-		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
-	heat_label.text = "Heat Level: " + str(heat_level)
+	var adjust_heat = func():
+		if player_in_shadow:
+			heat_level -= .139*1.5
+			self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
+		else:
+			heat_level += 0.278*1.5
+			self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
+	adjust_heat.call()
+	distance += 2*heat_level /100
+	distance_label.text = "Distance: " + str(int(distance)) + "ft"
 	if heat_level > 100:
 		emit_signal("overheated")
 		heat_level = 50.0

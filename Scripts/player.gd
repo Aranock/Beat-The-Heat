@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var stun_timer = $StunTimer
 
-var player_speed : float = 200.0
+var player_speed : float = 300.0
 signal player_movement
 var player_speed_position = 3
 var stunned : bool = false

@@ -1,26 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://clqksjjufyxpc"]
+[gd_scene load_steps=11 format=3 uid="uid://clqksjjufyxpc"]
 
 [ext_resource type="PackedScene" uid="uid://cybqw86l57nsj" path="res://Scenes/Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dcxf2yfl17qx2" path="res://Scripts/main.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://i625y73dobje" path="res://Scenes/heat_bar.tscn" id="2_v1gob"]
+[ext_resource type="Texture2D" uid="uid://8j121ni2ihle" path="res://Assets/bth jam/TempBar.png" id="3_jw32o"]
 [ext_resource type="PackedScene" uid="uid://dp7aqfks4df4" path="res://Scenes/Sun_Area.tscn" id="3_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b21silibtmbth" path="res://Scenes/GameOverMenu.tscn" id="4_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://crfglgciooyr6" path="res://Scenes/pause_menu.tscn" id="5_pbw6q"]
+[ext_resource type="Texture2D" uid="uid://fbqqhj3ri0iq" path="res://Assets/bth jam/Backdrop.png" id="8_50glp"]
+[ext_resource type="Texture2D" uid="uid://dt0gpytgpese8" path="res://Assets/bth jam/BG Overlay.png" id="9_vy5pj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bmxlf"]
+blend_mode = 1
 
 [node name="Main Control" type="Node2D"]
 script = ExtResource("1_uu6xs")
 
+[node name="TempBar" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(570, 34)
+scale = Vector2(0.51704246, 0.428719)
+texture = ExtResource("3_jw32o")
+
 [node name="HeatBar" parent="." instance=ExtResource("2_v1gob")]
+z_index = 5
+position = Vector2(0, 24)
 
 [node name="GameOverCanvas" type="CanvasLayer" parent="."]
 
 [node name="GameOverMenu" parent="GameOverCanvas" instance=ExtResource("4_rgh2o")]
 process_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="PauseCanvas" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseCanvas" instance=ExtResource("5_pbw6q")]
 process_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(577, 324)
@@ -49,6 +65,21 @@ size_flags_vertical = 4
 text = "Heat Level: 50.0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(577, 324)
+scale = Vector2(0.60462964, 0.60462964)
+texture = ExtResource("8_50glp")
+metadata/_edit_lock_ = true
+
+[node name="BgOverlay" type="Sprite2D" parent="."]
+z_index = 4
+material = SubResource("CanvasItemMaterial_bmxlf")
+position = Vector2(579.00006, 326.00003)
+scale = Vector2(0.62592596, 0.6259259)
+texture = ExtResource("9_vy5pj")
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]
 [connection signal="timeout" from="HeatTimer" to="." method="_on_heat_timer_timeout"]

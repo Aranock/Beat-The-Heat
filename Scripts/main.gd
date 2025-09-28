@@ -83,11 +83,11 @@ func _on_heat_timer_timeout() -> void:
 	else:
 		heat_level += 0.278*2
 		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
-	heat_label.text = "Heat Level: " + str(heat_level)
 	if heat_level > 100:
-		emit_signal("overheated")
-		heat_level = 50.0
+		heat_level = 100.0
+		game_over()
 	elif heat_level<=0:
 		heat_level = 0
 		game_over()
+	heat_label.text = "Heat Level: " + str(heat_level)
 	emit_signal("heat_updated", heat_level)

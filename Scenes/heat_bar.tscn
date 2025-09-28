@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://i625y73dobje"]
 
-[ext_resource type="Texture2D" uid="uid://i4b4yl0bh02r" path="res://icon.svg" id="1_jd35p"]
+[ext_resource type="Texture2D" uid="uid://be02nkrb75o8r" path="res://Assets/bth jam/Icon.png" id="2_t6t23"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t6t23"]
 
@@ -8,7 +8,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_jd35p")
+"texture": ExtResource("2_t6t23")
 }],
 "loop": true,
 "name": &"default",
@@ -19,6 +19,6 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_t6t23")
 
 [node name="LizardHeatIcon" type="AnimatedSprite2D" parent="."]
-position = Vector2(553, 21)
-scale = Vector2(0.3125, 0.265625)
+position = Vector2(551.5, 27.261719)
+scale = Vector2(0.36936942, 0.38051888)
 sprite_frames = SubResource("SpriteFrames_xk5xh")

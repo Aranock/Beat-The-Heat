@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs8ww8722xsrx"]
 
-[ext_resource type="Texture2D" uid="uid://chc2kgmo166w" path="res://Assets/Oval-Shape-2735322656.png" id="1_exq03"]
 [ext_resource type="Script" uid="uid://bxk6byt42ndw2" path="res://Scripts/obstacles.gd" id="1_is2jm"]
+[ext_resource type="Texture2D" uid="uid://w6p6ocvtc46k" path="res://Assets/bth jam/Rock1.png" id="2_ug3r7"]
 [ext_resource type="PackedScene" uid="uid://jnc3mesvmas8" path="res://Scenes/shadow.tscn" id="3_ug3r7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1st6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_exq03")
+"texture": ExtResource("2_ug3r7")
 }],
 "loop": true,
 "name": &"default",
@@ -16,8 +16,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_is2jm"]
-radius = 18.0
-height = 126.0
+radius = 37.0
+height = 74.0
 
 [node name="Obstacle" type="RigidBody2D"]
 disable_mode = 1
@@ -26,11 +26,13 @@ lock_rotation = true
 script = ExtResource("1_is2jm")
 
 [node name="ObstacleAnimation" type="AnimatedSprite2D" parent="."]
-rotation = 1.5707964
-scale = Vector2(0.23574658, 0.12193185)
+z_index = 1
+position = Vector2(1, 4)
+scale = Vector2(0.3121834, 0.33612546)
 sprite_frames = SubResource("SpriteFrames_s1st6")
 
 [node name="ObstacleCollider" type="CollisionShape2D" parent="."]
+position = Vector2(2, 12)
 shape = SubResource("CapsuleShape2D_is2jm")
 
 [node name="Shadow" parent="." instance=ExtResource("3_ug3r7")]

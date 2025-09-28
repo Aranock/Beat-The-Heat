@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://crfglgciooyr6"]
 
-[ext_resource type="Script" uid="uid://duwxy28pxjmmn" path="res://SCripts/pause_menu.gd" id="1_k0w1u"]
+[ext_resource type="Script" uid="uid://duwxy28pxjmmn" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
 [ext_resource type="Shader" uid="uid://e12lig0d16ir" path="res://Scripts/menu.gdshader" id="2_1och7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k0w1u"]
@@ -130,7 +130,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
 text = "Exit Game"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="PauseAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vmyb1")
 }

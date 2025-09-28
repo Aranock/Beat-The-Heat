@@ -148,7 +148,6 @@ scale = Vector2(0.091, 0.091)
 sprite_frames = SubResource("SpriteFrames_sh265")
 animation = &"onfire"
 autoplay = "run"
-frame_progress = 0.27842066
 speed_scale = 2.0
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]

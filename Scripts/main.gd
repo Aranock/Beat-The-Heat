@@ -58,10 +58,11 @@ func _on_player_emit_player_movement() -> void:
 
 func game_over():
 	game_over_menu.visible = true
-	game_over_menu.pause()
+	game_over_menu.pause(distance)
 
 func _on_sun_area_game_over():
 	emit_signal("overheated")
+	Died.wait_time = .2
 	Died.start()
 	is_game_over =true
 
@@ -128,15 +129,16 @@ func _on_heat_timer_timeout() -> void:
 			heat_level = 100.0
 			emit_signal("overheated")
 			Died.start()
+			Died.wait_time = .8
 			is_game_over = true
 		elif heat_level<=0:
 			heat_level = 0
 			emit_signal("overheated")
 			Died.start()
+			Died.wait_time = .8
 			is_game_over = true
 		emit_signal("heat_updated", heat_level)
 
 
 func _on_died_timeout() -> void:
-	print("timer finished")
 	game_over() # Replace with function body.

@@ -1,5 +1,7 @@
 extends Control
 
+var score = 0
+
 func _ready() -> void:
 	resume()
 
@@ -7,9 +9,11 @@ func resume():
 	get_tree().paused = false
 	self.visible =false
 	
-func pause():
+func pause(distance):
 	get_tree().paused = true
 	$GameOverAnimation.play("menu_blur")
+	score = distance
+	$PanelContainer/VBoxContainer/DistanceLabel.text = "You went " + str(int(distance)) + "mm"
 
 func _on_restart_button_down() -> void:
 	resume()

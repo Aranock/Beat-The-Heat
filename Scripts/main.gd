@@ -12,6 +12,7 @@ var player_in_shadow : bool = false
 var total_entered_shadows : int = 0
 signal heat_updated
 signal overheated
+var previous_obstacle_position = -1
 
 
 @onready var obstacleTemplate = preload("res://Scenes/Obstacles.tscn")
@@ -19,6 +20,7 @@ signal overheated
 var obstacles: Array = []
 
 func _ready() -> void:
+	randomize()
 	self.player.position = Vector2(576, 324)
 	self.heat_bar.get_node("LizardHeatIcon").position = Vector2(576, 25)
 	self.player.player_movement.connect(_on_player_emit_player_movement)
@@ -46,9 +48,29 @@ func _on_sun_area_game_over():
 	game_over()
 
 func _on_obstacle_spawner_timeout() -> void:
+	var generate_start_position = func():
+		var get_random_position_excluding_range = func(previous_y, view_size):
+			var up_or_down = randf_range(0,1)
+			if up_or_down < (previous_y-150) / (view_size.y-200) or previous_y+200 > view_size.y-100:
+				var new_pos = Vector2(view_size.x+30, randi_range(100, previous_y-200))
+				print(new_pos)
+				return new_pos
+			else:
+				var new_pos = Vector2(view_size.x+30, randi_range(previous_y+200, view_size.y-100))
+				print(new_pos)
+				return new_pos
+				
+		var view = get_viewport_rect().size
+		var random_position = 0
+		if previous_obstacle_position == -1:
+			random_position = Vector2(view.x + 200, randi_range(100, view.y-100))
+			previous_obstacle_position = random_position.y
+		else:
+			random_position = get_random_position_excluding_range.call(previous_obstacle_position, view)
+			previous_obstacle_position = random_position.y
+		return random_position
 	var new_obstacle = obstacleTemplate.instantiate()
-	var view = get_viewport_rect().size
-	new_obstacle.global_position = Vector2(view.x + 200, randi_range(0, view.y))
+	new_obstacle.global_position = generate_start_position.call()
 	add_child(new_obstacle)
 	obstacles.append(new_obstacle)
 	self.heat_updated.connect(new_obstacle._on_main_heat_updated)
@@ -57,7 +79,6 @@ func _on_obstacle_spawner_timeout() -> void:
 
 func player_exited_shadow():
 	total_entered_shadows-=1
-	print(total_entered_shadows)
 	if total_entered_shadows <= 0:
 		total_entered_shadows = 0
 		player_in_shadow = false

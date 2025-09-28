@@ -7,6 +7,8 @@ extends Node2D
 @onready var heat_label = $HeatLabel
 @onready var pause_menu = $PauseCanvas/PauseMenu
 var heat_level = 50.0
+var player_in_shadow : bool = false
+var total_entered_shadows : int = 0
 signal heat_updated
 signal overheated
 
@@ -24,7 +26,7 @@ func _ready() -> void:
 	self.pause_menu.visible = false
 	self.game_over_menu.visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pause_game()
 
 func _on_player_emit_player_movement() -> void:
@@ -45,6 +47,20 @@ func _on_obstacle_spawner_timeout() -> void:
 	add_child(new_obstacle)
 	obstacles.append(new_obstacle)
 	self.heat_updated.connect(new_obstacle._on_main_heat_updated)
+	new_obstacle.get_node("Shadow").entered_shadow.connect(player_entered_shadow)
+	new_obstacle.get_node("Shadow").exited_shadow.connect(player_exited_shadow)
+
+func player_exited_shadow():
+	total_entered_shadows-=1
+	print(total_entered_shadows)
+	if total_entered_shadows <= 0:
+		total_entered_shadows = 0
+		player_in_shadow = false
+
+func player_entered_shadow():
+	total_entered_shadows+=1
+	print(total_entered_shadows)
+	player_in_shadow = true
 
 func pause_game():
 	if Input.is_action_just_pressed("pause"):
@@ -56,7 +72,10 @@ func pause_game():
 			pause_menu.resume()
 
 func _on_heat_timer_timeout() -> void:
-	heat_level += 0.278
+	if player_in_shadow:
+		heat_level -= .139
+	else:
+		heat_level += 0.278
 	heat_label.text = "Heat Level: " + str(heat_level)
 	if heat_level > 100:
 		emit_signal("overheated")

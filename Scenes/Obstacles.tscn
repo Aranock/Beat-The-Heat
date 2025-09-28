@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs8ww8722xsrx"]
+[gd_scene load_steps=6 format=3 uid="uid://cs8ww8722xsrx"]
 
 [ext_resource type="Texture2D" uid="uid://chc2kgmo166w" path="res://Assets/Oval-Shape-2735322656.png" id="1_exq03"]
 [ext_resource type="Script" uid="uid://bxk6byt42ndw2" path="res://Scripts/obstacles.gd" id="1_is2jm"]
+[ext_resource type="PackedScene" uid="uid://jnc3mesvmas8" path="res://Scenes/shadow.tscn" id="3_ug3r7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1st6"]
 animations = [{
@@ -31,3 +32,6 @@ sprite_frames = SubResource("SpriteFrames_s1st6")
 
 [node name="ObstacleCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_is2jm")
+
+[node name="Shadow" parent="." instance=ExtResource("3_ug3r7")]
+position = Vector2(39, 1)

@@ -5,6 +5,7 @@ extends Node2D
 @onready var sun_area = $"Sun Area"
 @onready var game_over_menu = $GameOverCanvas/GameOverMenu
 @onready var heat_label = $HeatLabel
+@onready var pause_menu = $PauseCanvas/PauseMenu
 var heat_level = 50.0
 signal heat_updated
 signal overheated
@@ -20,6 +21,11 @@ func _ready() -> void:
 	self.heat_updated.connect(self.player._on_main_heat_updated)
 	self.overheated.connect(self.player._on_main_overheated)
 	self.sun_area.game_over.connect(_on_sun_area_game_over)
+	self.pause_menu.visible = false
+	self.game_over_menu.visible = false
+
+func _process(delta: float) -> void:
+	pause_game()
 
 func _on_player_emit_player_movement() -> void:
 	var view = get_viewport_rect().size / 2
@@ -29,6 +35,7 @@ func _on_player_emit_player_movement() -> void:
 	player.global_position.y = clamp(player.global_position.y, bounds_uw, bounds_dw)
 
 func _on_sun_area_game_over():
+	game_over_menu.visible = true
 	game_over_menu.pause()
 
 func _on_obstacle_spawner_timeout() -> void:
@@ -38,6 +45,15 @@ func _on_obstacle_spawner_timeout() -> void:
 	add_child(new_obstacle)
 	obstacles.append(new_obstacle)
 	self.heat_updated.connect(new_obstacle._on_main_heat_updated)
+
+func pause_game():
+	if Input.is_action_just_pressed("pause"):
+		if get_tree().paused == false:
+			get_tree().paused = true
+			pause_menu.visible = true
+			pause_menu.pause()
+		elif get_tree().paused == true:
+			pause_menu.resume()
 
 func _on_heat_timer_timeout() -> void:
 	heat_level += 0.278

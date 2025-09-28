@@ -12,10 +12,12 @@ script = ExtResource("1_uu6xs")
 [node name="GameOverCanvas" type="CanvasLayer" parent="."]
 
 [node name="GameOverMenu" parent="GameOverCanvas" instance=ExtResource("4_rgh2o")]
+process_mode = 2
 
 [node name="PauseCanvas" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseCanvas" instance=ExtResource("5_pbw6q")]
+process_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(577, 324)

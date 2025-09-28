@@ -7,6 +7,7 @@ extends Node2D
 @onready var distance_label = $DistanceLabel
 @onready var heat_bar = $HeatBar
 @onready var pause_menu = $PauseCanvas/PauseMenu
+@onready var Died = $Died
 var heat_level = 35.0
 var player_in_shadow : bool = false
 var total_entered_shadows : int = 0
@@ -14,6 +15,7 @@ signal heat_updated
 signal overheated
 var previous_obstacle_position = -1
 var distance = 0.0
+var is_game_over = false
 
 
 @onready var obstacle_template = preload("res://Scenes/Obstacles.tscn")
@@ -59,7 +61,9 @@ func game_over():
 	game_over_menu.pause()
 
 func _on_sun_area_game_over():
-	game_over()
+	emit_signal("overheated")
+	Died.start()
+	is_game_over =true
 
 func _on_obstacle_spawner_timeout() -> void:
 	var generate_start_position = func():
@@ -116,13 +120,23 @@ func _on_heat_timer_timeout() -> void:
 		else:
 			heat_level += 0.278*1.5
 			self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
-	adjust_heat.call()
-	distance += 2*heat_level /100
-	distance_label.text = "Distance: " + str(int(distance)) + "ft"
-	if heat_level > 100:
-		heat_level = 100.0
-		game_over()
-	elif heat_level<=0:
-		heat_level = 0
-		game_over()
-	emit_signal("heat_updated", heat_level)
+	if !is_game_over:
+		adjust_heat.call()
+		distance += 2*heat_level /100
+		distance_label.text = "Distance: " + str(int(distance)) + "mm"
+		if heat_level > 100:
+			heat_level = 100.0
+			emit_signal("overheated")
+			Died.start()
+			is_game_over = true
+		elif heat_level<=0:
+			heat_level = 0
+			emit_signal("overheated")
+			Died.start()
+			is_game_over = true
+		emit_signal("heat_updated", heat_level)
+
+
+func _on_died_timeout() -> void:
+	print("timer finished")
+	game_over() # Replace with function body.

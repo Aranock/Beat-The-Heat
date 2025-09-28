@@ -2,11 +2,20 @@ extends CharacterBody2D
 
 @onready var stun_timer = $StunTimer
 @onready var player_animation = $PlayerAnimation
+@onready var animation_player = $AnimationPlayer
+@onready var shadow_lizard = $ShadowLizard
+
+var prev_ht_level =0
 
 var player_speed : float = 300.0
 signal player_movement
 var player_speed_position = 3
 var stunned : bool = false
+
+func _ready() -> void:
+	shadow_lizard.visible = true
+	self.animation_player.play('shadow bobble')
+	
 
 func _physics_process(_delta):
 	var set_x_velocity = func():
@@ -35,19 +44,21 @@ func _physics_process(_delta):
 			move_and_slide()
 
 func _on_main_heat_updated(ht_lvl):
-	if ht_lvl > 75:
-		player_speed_position = 4
-		player_animation.animation = 'onfire'
-	else:
-		if ht_lvl > 50:
-			player_speed_position = 3
-		elif ht_lvl > 25:
-			player_speed_position = 2
-		elif ht_lvl > 0:
-			player_speed_position = 1
-		player_animation.animation = 'run'
+	if !stunned:
+		if ht_lvl > 75:
+			player_speed_position = 4
+			player_animation.animation = 'onfire'
+		else:
+			if ht_lvl > 50:
+				player_speed_position = 3
+			elif ht_lvl > 25:
+				player_speed_position = 2
+			elif ht_lvl > 0:
+				player_speed_position = 1
+			player_animation.animation = 'run'
 
 func _on_main_overheated():
+	player_animation.play("die")
 	stunned = true
 	stun_timer.start()
 

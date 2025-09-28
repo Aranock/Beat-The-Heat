@@ -1,4 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://clqksjjufyxpc"]
+[gd_scene load_steps=11 format=3 uid="uid://clqksjjufyxpc"]
+
 [ext_resource type="PackedScene" uid="uid://cybqw86l57nsj" path="res://Scenes/Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dcxf2yfl17qx2" path="res://Scripts/main.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://i625y73dobje" path="res://Scenes/heat_bar.tscn" id="2_v1gob"]
@@ -6,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dp7aqfks4df4" path="res://Scenes/Sun_Area.tscn" id="3_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b21silibtmbth" path="res://Scenes/GameOverMenu.tscn" id="4_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://crfglgciooyr6" path="res://Scenes/pause_menu.tscn" id="5_pbw6q"]
-[ext_resource type="Texture2D" uid="uid://fbqqhj3ri0iq" path="res://Assets/bth jam/Backdrop.png" id="8_50glp"]
 [ext_resource type="FontFile" uid="uid://bc61b6ehals1e" path="res://Assets/KRONIKA_.ttf" id="8_bmxlf"]
-
 [ext_resource type="Texture2D" uid="uid://dt0gpytgpese8" path="res://Assets/bth jam/BG Overlay.png" id="9_vy5pj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bmxlf"]
@@ -46,7 +45,7 @@ position = Vector2(577, 324)
 position = Vector2(577, 324)
 
 [node name="Sun Area" parent="." instance=ExtResource("3_kln2b")]
-visible = false
+position = Vector2(-12, -4)
 
 [node name="ObstacleSpawner" type="Timer" parent="."]
 autostart = true
@@ -74,5 +73,9 @@ scale = Vector2(0.62592596, 0.6259259)
 texture = ExtResource("9_vy5pj")
 metadata/_edit_lock_ = true
 
+[node name="Died" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_timeout"]
 [connection signal="timeout" from="HeatTimer" to="." method="_on_heat_timer_timeout"]
+[connection signal="timeout" from="Died" to="." method="_on_died_timeout"]

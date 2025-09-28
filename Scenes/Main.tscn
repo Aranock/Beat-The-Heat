@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://clqksjjufyxpc"]
+[gd_scene load_steps=7 format=3 uid="uid://clqksjjufyxpc"]
 
 [ext_resource type="PackedScene" uid="uid://cybqw86l57nsj" path="res://Scenes/Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dcxf2yfl17qx2" path="res://Scripts/main.gd" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://i625y73dobje" path="res://Scenes/heat_bar.tscn" id="2_v1gob"]
 [ext_resource type="PackedScene" uid="uid://dp7aqfks4df4" path="res://Scenes/Sun_Area.tscn" id="3_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b21silibtmbth" path="res://Scenes/GameOverMenu.tscn" id="4_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://crfglgciooyr6" path="res://Scenes/pause_menu.tscn" id="5_pbw6q"]
 
 [node name="Main Control" type="Node2D"]
 script = ExtResource("1_uu6xs")
+
+[node name="HeatBar" parent="." instance=ExtResource("2_v1gob")]
 
 [node name="GameOverCanvas" type="CanvasLayer" parent="."]
 
@@ -37,10 +40,10 @@ wait_time = 0.1
 autostart = true
 
 [node name="HeatLabel" type="RichTextLabel" parent="."]
-offset_left = 382.0
-offset_top = 2.0
-offset_right = 751.0
-offset_bottom = 61.0
+offset_left = 388.0
+offset_top = 588.0
+offset_right = 757.0
+offset_bottom = 647.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Heat Level: 50.0"

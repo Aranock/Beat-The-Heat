@@ -5,6 +5,7 @@ extends Node2D
 @onready var sun_area = $"Sun Area"
 @onready var game_over_menu = $GameOverCanvas/GameOverMenu
 @onready var heat_label = $HeatLabel
+@onready var heat_bar = $HeatBar
 @onready var pause_menu = $PauseCanvas/PauseMenu
 var heat_level = 50.0
 var player_in_shadow : bool = false
@@ -19,6 +20,7 @@ var obstacles: Array = []
 
 func _ready() -> void:
 	self.player.position = Vector2(576, 324)
+	self.heat_bar.get_node("LizardHeatIcon").position = Vector2(576, 25)
 	self.player.player_movement.connect(_on_player_emit_player_movement)
 	self.heat_updated.connect(self.player._on_main_heat_updated)
 	self.overheated.connect(self.player._on_main_overheated)
@@ -36,9 +38,12 @@ func _on_player_emit_player_movement() -> void:
 	var bounds_dw = camera_pos.y + view.y #the camera bounds at the bottom
 	player.global_position.y = clamp(player.global_position.y, bounds_uw, bounds_dw)
 
-func _on_sun_area_game_over():
+func game_over():
 	game_over_menu.visible = true
 	game_over_menu.pause()
+
+func _on_sun_area_game_over():
+	game_over()
 
 func _on_obstacle_spawner_timeout() -> void:
 	var new_obstacle = obstacleTemplate.instantiate()
@@ -73,11 +78,16 @@ func pause_game():
 
 func _on_heat_timer_timeout() -> void:
 	if player_in_shadow:
-		heat_level -= .139
+		heat_level -= .139*2
+		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
 	else:
-		heat_level += 0.278
+		heat_level += 0.278*2
+		self.heat_bar.get_node("LizardHeatIcon").position = Vector2(((get_viewport_rect().size.x -200) * (heat_level/100))+100, 0)
 	heat_label.text = "Heat Level: " + str(heat_level)
 	if heat_level > 100:
 		emit_signal("overheated")
 		heat_level = 50.0
+	elif heat_level<=0:
+		heat_level = 0
+		game_over()
 	emit_signal("heat_updated", heat_level)

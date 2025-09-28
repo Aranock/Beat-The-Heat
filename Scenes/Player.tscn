@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cybqw86l57nsj"]
+[gd_scene load_steps=35 format=3 uid="uid://cybqw86l57nsj"]
 
 [ext_resource type="Script" uid="uid://cugbnbk47i200" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://xd4uutn1nros" path="res://Assets/bth jam/lizard frames/fire no lizard/fire_0000.png" id="2_1iu4k"]
@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://0q2pjvwnwi4q" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_04.png" id="17_x63xi"]
 [ext_resource type="Texture2D" uid="uid://dit8q8s15mlxp" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_05.png" id="18_i2e8t"]
 [ext_resource type="Texture2D" uid="uid://uxdfokb5u4ve" path="res://Assets/bth jam/lizard frames/runfire/lizardfire_06.png" id="19_qidb7"]
+[ext_resource type="Texture2D" uid="uid://dkhcdrv2hsqig" path="res://Assets/bth jam/extra/puff/puff_02.png" id="26_lyrkg"]
+[ext_resource type="Texture2D" uid="uid://b0qc5m6fcdgr4" path="res://Assets/bth jam/extra/puff/puff_03.png" id="27_c43xd"]
+[ext_resource type="Texture2D" uid="uid://dhupmmggc4a7u" path="res://Assets/bth jam/extra/puff/puff_04.png" id="28_avx33"]
+[ext_resource type="Texture2D" uid="uid://fjodcgfapfap" path="res://Assets/bth jam/extra/puff/puff_05.png" id="29_rxg2u"]
+[ext_resource type="Texture2D" uid="uid://o1wnx7d8vdy" path="res://Assets/bth jam/extra/puff/puff_06.png" id="30_xixlo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_70hv0"]
 animations = [{
@@ -127,6 +132,32 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(58, 34)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_bfbt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_lyrkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_c43xd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_avx33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_rxg2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xixlo")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"puff",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.09, 1.09)
 collision_layer = 524288
@@ -157,5 +188,14 @@ shape = SubResource("RectangleShape2D_onrkg")
 [node name="StunTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="PoofAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-51.529816, -2.0487428)
+scale = Vector2(0.08383941, 0.08552305)
+sprite_frames = SubResource("SpriteFrames_bfbt0")
+animation = &"puff"
+frame = 5
+frame_progress = 1.0
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

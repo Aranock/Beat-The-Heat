@@ -1213,6 +1213,7 @@ animations = [{
 }]
 
 [node name="TitleScreen" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [669.0]
 
 [node name="Play" type="Button" parent="."]
 z_index = 1
